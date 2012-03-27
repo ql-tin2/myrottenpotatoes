@@ -1,0 +1,25 @@
+-#  This file is app/views/movies/index.html.haml
+%h2 All Movies
+
+%table#movies
+  %thead
+    %tr
+      -#%th= params
+      %th{:class => (params.has_key?(:title_header)) ? 'hilite' : nil, :id => 'title_header'}= link_to 'Movie Title', movies_path( {:title_header => true})
+    
+
+      %th Rating
+      %th{:class => (params.has_key?(:release_date_header)) ? 'hilite' : nil, :id => 'release_date_header'}= link_to 'Release Date', movies_path( {:release_date_header => true})	
+      %th More Info
+  %tbody
+    - @movies.each do |movie|
+      %tr
+        -#%td
+        %td= movie.title 
+        %td= movie.rating
+        %td= movie.release_date
+        %td= link_to "More about #{movie.title}", movie_path(movie)
+        
+        
+-# add to end of index.html.haml
+= link_to 'Add new movie', new_movie_path
